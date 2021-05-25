@@ -28,7 +28,11 @@ class StartWindow extends StatelessWidget {
         title: Text("ビンゴを始める"),
       ),
       body: Center(
-        child: Text('Start'),
+        child: IconButton(
+          icon: Icon(IconData(0xe448, fontFamily: 'MaterialIcons')),
+          onPressed: () => {print("temp")},
+          iconSize: 100.0,
+        ),
       ),
     );
   }
