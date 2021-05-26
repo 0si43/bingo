@@ -28,14 +28,4 @@ class StartWindow extends StatelessWidget {
   Widget build(BuildContext context) {
     return FirstPage();
   }
-
-  // void _temp() {
-  //   Navigator.of(context).push(
-  //     MaterialPageRoute<void>(
-  //       builder: (BuildContext context) {
-  //         return GamePage;
-  //       }
-  //     )
-  //   );
-  // }
 }
