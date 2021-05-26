@@ -4,7 +4,7 @@
 
 import 'dart:js';
 
-import 'package:bingo/game_page.dart';
+import 'package:bingo/first_page.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -26,23 +26,7 @@ class MyApp extends StatelessWidget {
 class StartWindow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("ビンゴを始める"),
-      ),
-      body: Center(
-        child: IconButton(
-          icon: Icon(IconData(0xe448, fontFamily: 'MaterialIcons')),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => GamePage()),
-            );
-          },
-          iconSize: 100.0,
-        ),
-      ),
-    );
+    return FirstPage();
   }
 
   // void _temp() {
