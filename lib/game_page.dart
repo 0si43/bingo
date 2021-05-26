@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math' as math;
 
 class GamePage extends StatefulWidget {
   @override
@@ -8,12 +9,14 @@ class GamePage extends StatefulWidget {
 class _GamePageState extends State<GamePage> {
   @override
   Widget build(BuildContext context) {
+    var _numbers = List<int>.generate(74, (i) => i + 1);
+    var _rand = new math.Random();
     return Scaffold(
       appBar: AppBar(
         title: Text("Game"),
       ),
-      body: Container(
-        color: Colors.red,
+      body: Center(
+        child: Text(_numbers[_rand.nextInt(74)].toString()),
       ),
     );
   }
