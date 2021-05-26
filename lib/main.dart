@@ -2,6 +2,9 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+import 'dart:js';
+
+import 'package:bingo/game_page.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -30,10 +33,25 @@ class StartWindow extends StatelessWidget {
       body: Center(
         child: IconButton(
           icon: Icon(IconData(0xe448, fontFamily: 'MaterialIcons')),
-          onPressed: () => {print("temp")},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => GamePage()),
+            );
+          },
           iconSize: 100.0,
         ),
       ),
     );
   }
+
+  // void _temp() {
+  //   Navigator.of(context).push(
+  //     MaterialPageRoute<void>(
+  //       builder: (BuildContext context) {
+  //         return GamePage;
+  //       }
+  //     )
+  //   );
+  // }
 }
