@@ -17,7 +17,7 @@ class _GamePageState extends State<GamePage> {
   @override
   void initState() {
     super.initState();
-    _numbers = List<int>.generate(74, (i) => i + 1);
+    _numbers = List<int>.generate(75, (i) => i + 1);
     _saved = [];
     Timer.periodic(const Duration(milliseconds: 200), _change);
   }
@@ -35,15 +35,18 @@ class _GamePageState extends State<GamePage> {
 
   @override
   Widget build(BuildContext context) {
-    _index = _rand.nextInt(_numbers.length);
+    if (_numbers.isNotEmpty) {
+      _index = _rand.nextInt(_numbers.length);
+    }
     return Scaffold(
       appBar: AppBar(),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Center(
-            child:
-                NumberRouletteButton(_numbers[_index].toString(), _tapAction),
+            child: _numbers.isEmpty
+                ? NumberRouletteButton("終", () => {})
+                : NumberRouletteButton(_numbers[_index].toString(), _tapAction),
           ),
           Divider(),
           _buildRow(1, 15),
