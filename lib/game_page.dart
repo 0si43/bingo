@@ -28,20 +28,34 @@ class _GamePageState extends State<GamePage> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Center(
-            child: NumberRouletteButton(_numbers[_index].toString(), temp),
+            child:
+                NumberRouletteButton(_numbers[_index].toString(), _tapAction),
           ),
           Divider(),
-          Text(_saved.isEmpty ? "empty" : _saved.last.toString()),
+          _buildRow(1, 15),
+          _buildRow(16, 30),
+          _buildRow(31, 45),
+          _buildRow(46, 60),
+          _buildRow(61, 75),
         ],
       ),
     );
   }
 
-  void temp() {
+  void _tapAction() {
     setState(() {
       var _value = _numbers.removeAt(_index);
       _saved.add(_value);
     });
+  }
+
+  Widget _buildRow(int start, int end) {
+    var _filtered =
+        _saved.where((element) => start <= element && element <= end).toList();
+    _filtered.sort();
+    return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: _filtered.map((e) => Text(e.toString())).toList());
   }
 }
 
