@@ -8,12 +8,14 @@ class GamePage extends StatefulWidget {
 
 class _GamePageState extends State<GamePage> {
   late List<int> _numbers;
+  late List<int> _saved;
   var _rand = new math.Random();
 
   @override
   void initState() {
     super.initState();
     _numbers = List<int>.generate(74, (i) => i + 1);
+    _saved = [];
   }
 
   @override
@@ -28,7 +30,7 @@ class _GamePageState extends State<GamePage> {
                 _numbers[_rand.nextInt(_numbers.length)].toString(), temp),
           ),
           Divider(),
-          Text("temp"),
+          Text(_saved.isEmpty ? "empty" : _saved.last.toString()),
         ],
       ),
     );
@@ -36,7 +38,8 @@ class _GamePageState extends State<GamePage> {
 
   void temp() {
     setState(() {
-      _numbers.removeLast();
+      var _value = _numbers.removeLast();
+      _saved.add(_value);
     });
   }
 }
