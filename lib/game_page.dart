@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
+import 'dart:async';
 
 class GamePage extends StatefulWidget {
   @override
@@ -11,12 +12,25 @@ class _GamePageState extends State<GamePage> {
   late List<int> _saved;
   var _rand = new math.Random();
   late int _index;
+  late Timer _timer;
 
   @override
   void initState() {
     super.initState();
     _numbers = List<int>.generate(74, (i) => i + 1);
     _saved = [];
+    Timer.periodic(const Duration(milliseconds: 200), _change);
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
+
+  void _change(Timer timer) {
+    _timer = timer;
+    setState(() {});
   }
 
   @override
@@ -54,7 +68,7 @@ class _GamePageState extends State<GamePage> {
         _saved.where((element) => start <= element && element <= end).toList();
     _filtered.sort();
     return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: _filtered.map((e) => Text(e.toString())).toList());
   }
 }
