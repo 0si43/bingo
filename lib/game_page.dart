@@ -7,11 +7,17 @@ class GamePage extends StatefulWidget {
 }
 
 class _GamePageState extends State<GamePage> {
+  late List<int> _numbers;
+  var _rand = new math.Random();
+
+  @override
+  void initState() {
+    super.initState();
+    _numbers = List<int>.generate(74, (i) => i + 1);
+  }
+
   @override
   Widget build(BuildContext context) {
-    var _numbers = List<int>.generate(74, (i) => i + 1);
-    var _rand = new math.Random();
-
     return Scaffold(
       appBar: AppBar(),
       body: Column(
