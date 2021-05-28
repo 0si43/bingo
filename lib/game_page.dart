@@ -10,6 +10,7 @@ class _GamePageState extends State<GamePage> {
   late List<int> _numbers;
   late List<int> _saved;
   var _rand = new math.Random();
+  late int _index;
 
   @override
   void initState() {
@@ -20,14 +21,14 @@ class _GamePageState extends State<GamePage> {
 
   @override
   Widget build(BuildContext context) {
+    _index = _rand.nextInt(_numbers.length);
     return Scaffold(
       appBar: AppBar(),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Center(
-            child: NumberRouletteButton(
-                _numbers[_rand.nextInt(_numbers.length)].toString(), temp),
+            child: NumberRouletteButton(_numbers[_index].toString(), temp),
           ),
           Divider(),
           Text(_saved.isEmpty ? "empty" : _saved.last.toString()),
@@ -38,7 +39,7 @@ class _GamePageState extends State<GamePage> {
 
   void temp() {
     setState(() {
-      var _value = _numbers.removeLast();
+      var _value = _numbers.removeAt(_index);
       _saved.add(_value);
     });
   }
