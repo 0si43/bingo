@@ -11,6 +11,27 @@ class _GamePageState extends State<GamePage> {
   Widget build(BuildContext context) {
     var _numbers = List<int>.generate(74, (i) => i + 1);
     var _rand = new math.Random();
+
+    return Scaffold(
+      appBar: AppBar(),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Center(
+            child: NumberRouletteButton(_numbers[_rand.nextInt(74)].toString()),
+          ),
+          Divider(),
+          Text("temp"),
+        ],
+      ),
+    );
+  }
+}
+
+class NumberRouletteButton extends StatelessWidget {
+  final String _number;
+  NumberRouletteButton(this._number);
+  Widget build(BuildContext context) {
     var _shape = const CircleBorder(
       side: BorderSide(
         color: Colors.black,
@@ -19,31 +40,20 @@ class _GamePageState extends State<GamePage> {
       ),
     );
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Game"),
+    return ElevatedButton(
+      child: Text(
+        _number,
+        style: DefaultTextStyle.of(context).style.apply(fontSizeFactor: 10.0),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Center(
-            child: ElevatedButton(
-              child: Text(_numbers[_rand.nextInt(74)].toString()),
-              style: ElevatedButton.styleFrom(
-                fixedSize: Size(250.0, 250.0),
-                primary: Colors.white,
-                onPrimary: Colors.black,
-                shape: _shape,
-              ),
-              onPressed: () {
-                print("temp");
-              },
-            ),
-          ),
-          Divider(),
-          Text("temp"),
-        ],
+      style: ElevatedButton.styleFrom(
+        fixedSize: Size(250.0, 250.0),
+        primary: Colors.white,
+        onPrimary: Colors.black,
+        shape: _shape,
       ),
+      onPressed: () {
+        print("temp");
+      },
     );
   }
 }
