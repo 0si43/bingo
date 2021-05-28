@@ -24,7 +24,8 @@ class _GamePageState extends State<GamePage> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Center(
-            child: NumberRouletteButton(_numbers[_rand.nextInt(74)].toString()),
+            child: NumberRouletteButton(
+                _numbers[_rand.nextInt(_numbers.length)].toString(), temp),
           ),
           Divider(),
           Text("temp"),
@@ -32,11 +33,18 @@ class _GamePageState extends State<GamePage> {
       ),
     );
   }
+
+  void temp() {
+    setState(() {
+      _numbers.removeLast();
+    });
+  }
 }
 
 class NumberRouletteButton extends StatelessWidget {
   final String _number;
-  NumberRouletteButton(this._number);
+  final VoidCallback _callback;
+  NumberRouletteButton(this._number, this._callback);
   Widget build(BuildContext context) {
     var _shape = const CircleBorder(
       side: BorderSide(
@@ -58,7 +66,7 @@ class NumberRouletteButton extends StatelessWidget {
         shape: _shape,
       ),
       onPressed: () {
-        print("temp");
+        _callback();
       },
     );
   }
